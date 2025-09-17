@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Q-ARNE - Quantum foresight for cryogenic systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    
+    
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0B0C10;
+      color: #fff;
+    }
+
+    @keyframes gradientFlow {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+
+    
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: #0B0C10;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header .logo {
+      font-weight: 800;
+      font-size: 1.5em;
+      color: #2F80ED;
+    }
+    header nav a {
+      margin-left: 20px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    header nav a:hover {
+      color: #2F80ED;
+    }
+    .btn-primary {
+      background: #2F80ED;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: #2565c7;
+    }
+
+
+    
+    .hero h1 { font-size:3em; font-weight:800; margin-bottom:20px; }
+    .hero p { font-size:1.2em; color:#ccc; margin-bottom:40px; }
+    section { padding:80px 20px; max-width:1100px; margin:0 auto; }
+    h2 { font-size:2em; font-weight:700; color:#ffffff; margin-bottom:40px; text-align:center; }
+    .demo { display:flex; gap:40px; align-items:center; flex-wrap:wrap; }
+    .demo img { max-width:500px; border-radius:8px; }
+    .chat { background:#1a1c20; padding:20px; border-radius:8px; flex:1; }
+    .chat p { margin:10px 0; }
+    .feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+    .feature-card { background:#1a1c20; padding:20px; border-radius:8px; }
+    .feature-card h3 { margin-top:0; }
+    ul { line-height:1.8; }
+    footer { background:#111; text-align:center; padding:40px 20px; margin-top:60px; }
+    /* Fade-in animation */
+    .fade-in { opacity:0; transform:translateY(40px); transition:opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+
+    
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .hero h1, .hero p, .hero a {
+      position: relative;
+      z-index: 1;
+    }
+
+
+    
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+
+    /* Particle canvas styling */
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .hero {
+      background: url('hero-placeholder.jpg') no-repeat center center/cover,
+                  linear-gradient(135deg, #0B0C10, #1a1c20, #0B0C10);
+      background-blend-mode: overlay;
+      background-size: cover;
+      animation: gradientShift 12s ease infinite;
+      padding: 120px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .hero h1, .hero p, .hero a {
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+  
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+form button.btn-primary {
+  font-size: 1.1em;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(47, 128, 237, 0.3);
+}
+
+form button.btn-primary:hover {
+  transform: scale(1.02);
+  background: #1d4fa3;
+}
+
+form button.btn-primary {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form input, form textarea, form button.btn-primary {
+  width: 100%;
+  box-sizing: border-box;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=Poppins:wght@600;700&amp;display=swap" rel="stylesheet"/></head>
+<body>
+<header>
+<div class="logo">Q-ARNE</div>
+<nav>
+<a href="#demo">Demo</a>
+<a href="#features">Features</a>
+<a href="#integrations">Integrations</a>
+<a href="#benefits">Why Q-ARNE</a>
+<a class="btn-primary" href="#contact">Join Waitlist</a>
+</nav>
+</header>
+<section class="hero fade-in">
+<div id="particles-js"></div>
+<div class="hero-content">
+<h1>Quantum foresight for cryogenic systems</h1>
+<p>Predict and prevent failures before they strike.<br/>Save costly downtime and protect your experiments.</p>
+<a class="btn-primary" href="#demo">See Demo</a>
+</div>
+</section>
+<section class="fade-in" id="mission">
+<h2>Our Mission</h2>
+<p style="text-align:center; max-width:800px; margin:0 auto; color:#ccc; font-size:1.1em;">
+      At Q-ARNE, we bring foresight to cryogenic and quantum systems. 
+      Our mission is to reduce downtime, accelerate research, and unlock the future of quantum computing.
+    </p>
+</section>
+<section class="fade-in" id="workflow">
+<h2>How Q-ARNE Fits In</h2>
+<p style="text-align:center; color:#ccc; font-size:1.1em; max-width:800px; margin:0 auto;">From cryostats to insights — a streamlined path to reliability.</p>
+</section>
+<section class="fade-in" id="usecases">
+<h2>Who We Help</h2>
+<div class="feature-grid">
+<div class="feature-card fade-in">
+<h3>Quantum Labs &amp; Research Institutes</h3>
+<p>Ensure uptime and consistency in dilution refrigerators, accelerating both research and development.</p>
+</div>
+<div class="feature-card fade-in">
+<h3>Equipment Manufacturers</h3>
+<p>Add intelligence to cryogenic platforms with predictive insights.</p>
+</div>
+<div class="feature-card fade-in">
+<h3>Startups &amp; Innovators</h3>
+<p>Focus on building quantum applications, while Q-ARNE ensures the hardware runs smoothly.</p>
+</div>
+<div class="feature-card fade-in"><h3>Big Corporate Companies</h3><p>Support scalable quantum initiatives within large organizations seeking reliability and foresight.</p></div></div>
+</section>
+<section class="fade-in" id="demo">
+<h2>How Q-ARNE Helps</h2>
+<div class="demo">
+<img alt="Cryostat device placeholder" src="Picturexx.jpg"/>
+<div class="chat">
+<p><strong>User:</strong> “Pressure is unstable, what does this mean?”</p>
+<p><strong>Q-ARNE:</strong> “This indicates a possible blockage in the LN2 trap or helium leak. Recommended: check the compressor and schedule cleaning.”</p>
+</div>
+</div>
+</section>
+<section class="fade-in" id="features">
+<h2>Core Features</h2>
+<div class="feature-grid">
+<div class="feature-card fade-in">
+<h3>Cryostat anomaly detection</h3>
+<p>Real-time monitoring of pressures, flows, and temperatures to flag issues early.</p>
+</div>
+<div class="feature-card fade-in">
+<h3>Helium leak &amp; pressure monitoring</h3>
+<p>Detects compressor anomalies and performance fluctuations before failures occur.</p>
+</div>
+<div class="feature-card fade-in">
+<h3>Predictive foresight engine</h3>
+<p>AI-driven insights to suggest preventative maintenance and reduce downtime.</p>
+</div>
+</div>
+</section>
+<section class="fade-in" id="integrations">
+<h2>Integrations</h2>
+<p style="text-align:center;">Our aim is to integrate with all industry-leading cryostat manufacturers and cryo-electronics vendors.</p>
+</section>
+<section class="fade-in" id="technology" style="position:relative; background:url('cryostat3.jpg') no-repeat center center/cover; padding:120px 20px; color:#fff;">
+<div style="position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.65);"></div>
+<div style="position:relative; z-index:1; max-width:900px; margin:0 auto; text-align:center;">
+<h2 style="color:#fff;">Inside the Cryostat</h2>
+<p style="font-size:1.2em; line-height:1.6; color:#eee;">
+        Q-ARNE works where precision matters most — deep inside cryogenic environments. 
+        By monitoring and predicting the behavior of complex dilution refrigerators, 
+        Q-ARNE helps ensure stability, reliability, and uptime for the next generation of quantum computing.
+      </p>
+</div>
+</section>
+<section class="fade-in" id="benefits">
+<h2>Why Q-ARNE?</h2>
+<div class="feature-grid">
+<div class="feature-card fade-in">
+<h3>Advanced yet simple</h3>
+<p>Seamlessly fits into existing lab workflows with minimal setup.</p>
+</div>
+<div class="feature-card fade-in">
+<h3>Scalable</h3>
+<p>From a single dilution refrigerator to a large-scale quantum data center.</p>
+</div>
+<div class="feature-card fade-in">
+<h3>Actionable guidance</h3>
+<p>Not just alerts—clear recommendations on what to do next.</p>
+</div>
+<div class="feature-card fade-in">
+<h3>Built with experts</h3>
+<p>Developed in collaboration with physicists and cryogenics researchers.</p>
+</div>
+</div>
+</section>
+<section class="fade-in" id="contact">
+<h2>Book a Demo</h2>
+<p style="text-align:center; color:#ccc;">
+      Interested in Q-ARNE? Leave your details and we’ll reach out.
+    </p>
+<form data-netlify="true" method="POST" name="demo" style="max-width:500px; margin:40px auto; text-align:left;">
+<input name="form-name" type="hidden" value="demo"/>
+<label for="name">Name</label><br/>
+<input id="name" name="name" required="" style="width:100%; padding:12px; margin:10px 0; border-radius:6px; border:none;" type="text"/>
+<label for="email">Email</label><br/>
+<input id="email" name="email" required="" style="width:100%; padding:12px; margin:10px 0; border-radius:6px; border:none;" type="email"/>
+<label for="message">Message</label><br/>
+<textarea id="message" name="message" rows="4" style="width:100%; padding:12px; margin:10px 0; border-radius:6px; border:none;"></textarea>
+<button class="btn-primary" type="submit">Submit</button>
+</form>
+</section>
+<footer class="fade-in" id="contact">
+<h3>Q-ARNE</h3>
+<p>Quantum foresight for cryogenic systems.<br/>© 2025 Q-ARNE. All rights reserved.</p>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll(".fade-in");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, { threshold: 0.2 });
+      elements.forEach(el => observer.observe(el));
+    });
+  </script>
+<!-- particles.js library -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {"value": 60, "density": {"enable": true, "value_area": 800}},
+        "color": {"value": "#2F80ED"},
+        "shape": {"type": "circle"},
+        "opacity": {"value": 0.5, "random": true},
+        "size": {"value": 3, "random": true},
+        "line_linked": {"enable": true, "distance": 150, "color": "#2F80ED", "opacity": 0.3, "width": 1},
+        "move": {"enable": true, "speed": 1, "direction": "none", "out_mode": "out"}
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {"enable": true, "mode": "grab"},
+          "onclick": {"enable": true, "mode": "push"}
+        },
+        "modes": {
+          "grab": {"distance": 140, "line_linked": {"opacity": 0.5}},
+          "push": {"particles_nb": 4}
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+</body>
+</html>
