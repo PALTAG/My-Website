@@ -297,8 +297,8 @@ form input, form textarea, form button.btn-primary {
 <p style="text-align:center; color:#ccc;">
       Interested in Q-ARNE? Leave your details and we’ll reach out.
     </p>
-<form data-netlify="true" method="POST" name="demo" style="max-width:500px; margin:40px auto; text-align:left;">
-<input name="form-name" type="hidden" value="demo"/>
+<form action="/thank-you.html" data-netlify="true" method="POST" name="demo" netlify-honeypot="bot-field" style="max-width:500px; margin:40px auto; text-align:left;">
+<p hidden="True"><label>Don’t fill this out if you’re human: <input name="bot-field"/></label></p><input name="form-name" type="hidden" value="demo"/>
 <label for="name">Name</label><br/>
 <input id="name" name="name" required="" style="width:100%; padding:12px; margin:10px 0; border-radius:6px; border:none;" type="text"/>
 <label for="email">Email</label><br/>
