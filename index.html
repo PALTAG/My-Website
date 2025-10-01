@@ -103,6 +103,7 @@
     </nav>
     <button class="hamb" id="hamb" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   </header>
+  <noscript><div style="background:#1a1c20;color:#fff;padding:10px 20px;text-align:center;border-bottom:1px solid #20232a">This site works best with JavaScript enabled. All content is still available below.</div></noscript>
 
   <!-- HERO -->
   <section class="hero fade-in" id="home">
@@ -295,12 +296,56 @@
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el){e.preventDefault();window.scrollTo({top:el.offsetTop-60,behavior:'smooth'});links.classList.remove('open')}})});
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
-    particlesJS('particles-js',{
-      particles:{number:{value:60,density:{enable:true,value_area:800}},color:{value:'#2F80ED'},shape:{type:'circle'},opacity:{value:.5,random:true},size:{value:3,random:true},line_linked:{enable:true,distance:150,color:'#2F80ED',opacity:.28,width:1},move:{enable:true,speed:1.1,direction:'none',out_mode:'out'}},
-      interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'grab'},onclick:{enable:true,mode:'push'}},modes:{grab:{distance:140,line_linked:{opacity:.5}},push:{particles_nb:4}}},retina_detect:true
+    // Intersection fade-ins
+    document.addEventListener('DOMContentLoaded',()=>{
+      const els=[...document.querySelectorAll('.fade-in')];
+      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.18});
+      els.forEach(el=>io.observe(el));
     });
+
+    // Mobile nav
+    (function(){
+      const hamb=document.getElementById('hamb');
+      const links=document.getElementById('navLinks');
+      if(hamb&&links){hamb.addEventListener('click',()=>links.classList.toggle('open'));}
+    })();
+
+    // Smooth anchor scroll
+    (function(){
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click',e=>{
+          const id=a.getAttribute('href').slice(1);
+          const el=document.getElementById(id);
+          if(el){e.preventDefault();window.scrollTo({top:el.offsetTop-60,behavior:'smooth'});
+          const links=document.getElementById('navLinks');links&&links.classList.remove('open');}
+        });
+      });
+    })();
+
+    // Defensive particles loader (prevents desktop hard-fail if CDN blocked)
+    (function(){
+      const config={
+        particles:{number:{value:60,density:{enable:true,value_area:800}},color:{value:'#2F80ED'},shape:{type:'circle'},opacity:{value:.5,random:true},size:{value:3,random:true},line_linked:{enable:true,distance:150,color:'#2F80ED',opacity:.28,width:1},move:{enable:true,speed:1.1,direction:'none',out_mode:'out'}},
+        interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'grab'},onclick:{enable:true,mode:'push'}},modes:{grab:{distance:140,line_linked:{opacity:.5}},push:{particles_nb:4}}},
+        retina_detect:true
+      };
+
+      function init(){
+        if(window.particlesJS){ try{ window.particlesJS('particles-js',config); }catch(e){ console.warn('Particles init error',e);} }
+      }
+
+      // If library already present, init now; else inject script and init on load
+      if(typeof window.particlesJS==='function'){ init(); }
+      else {
+        const s=document.createElement('script');
+        s.src='https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js';
+        s.async=true;
+        s.onload=init;
+        s.onerror=()=>console.warn('Particles CDN blocked or failed; continuing without background.');
+        document.body.appendChild(s);
+      }
+    })();
   </script>
 </body>
 </html>
