@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Careers - Q-ARNE</title>
+  <meta name="description" content="Join Q-ARNE and help build operational intelligence for quantum infrastructure." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0B0C10;
+      --card:#1a1c20;
+      --brand:#2F80ED;
+      --text:#fff;
+      --muted:#cfcfcf;
+      --max:900px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:inherit}
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:#0b0c10;border-bottom:1px solid #17191f}
+    .logo{font-weight:800;font-size:1.25rem;color:var(--brand);letter-spacing:.3px;text-decoration:none}
+    nav{display:flex;gap:16px;align-items:center}
+    nav a{font-weight:600;text-decoration:none;opacity:.95}
+    nav a:hover{opacity:1;color:var(--brand)}
+    main{max-width:var(--max);margin:0 auto;padding:64px 20px 80px}
+    h1{font-family:Poppins,Inter,sans-serif;font-size:clamp(2rem,4vw,2.8rem);margin:0 0 14px}
+    .lead{color:#d6dbe4;line-height:1.7;font-size:1.08rem;margin:0 0 28px}
+    .card{background:var(--card);border:1px solid #20232a;border-radius:14px;padding:24px}
+    .card h2{font-family:Poppins,Inter,sans-serif;font-size:1.35rem;margin:0 0 10px}
+    .card p{margin:0 0 20px;color:var(--muted);line-height:1.6}
+    form{display:grid;gap:12px}
+    label{font-weight:600;font-size:.95rem}
+    input,select,textarea{
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid #222633;
+      background:#0f1116;
+      color:#fff;
+      font:inherit;
+    }
+    textarea{min-height:130px;resize:vertical}
+    .btn-primary{
+      background:var(--brand);
+      border:0;
+      border-radius:10px;
+      color:#fff;
+      cursor:pointer;
+      font-weight:700;
+      padding:12px 16px;
+    }
+    .btn-primary:hover{background:#1f6ae0}
+    .muted{color:#bfc6d3;font-size:.95rem;line-height:1.5}
+    footer{border-top:1px solid #17191f;padding:30px 20px;text-align:center}
+    @media (max-width:700px){
+      nav{gap:12px}
+      nav a{font-size:.95rem}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="/">Q-ARNE</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/#mission">Mission</a>
+      <a href="/#usecases">Who We Help</a>
+      <a href="/#features">What We Offer</a>
+      <a href="/#benefits">Why Q-ARNE</a>
+      <a href="/jobs.html">Open Positions</a>
+      <a href="/careers.html">Careers</a>
+      <a href="/#contact">Waitlist</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Build the Quantum Future with Q-ARNE</h1>
+    <p class="lead">
+      Share a short profile and the team will reach out when opportunities align.
+    </p>
+
+    <section class="card">
+      <h2>Career Interest Form</h2>
+      <p>Applications are reviewed by the Q-ARNE team.</p>
+      <form
+        name="careers_interest"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        enctype="multipart/form-data"
+        action="/thank-you.html"
+      >
+        <p hidden>
+          <label>Do not fill this out: <input name="bot-field" /></label>
+        </p>
+        <input type="hidden" name="form-name" value="careers_interest" />
+        <input type="hidden" name="subject" value="New careers inquiry - %{formName}" />
+
+        <label for="name">Full Name</label>
+        <input id="name" name="name" required placeholder="Ada Lovelace" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required placeholder="ada@example.org" />
+
+        <label for="portfolio">LinkedIn or Portfolio URL</label>
+        <input id="portfolio" name="portfolio" type="url" placeholder="https://www.linkedin.com/in/your-name" />
+
+        <label for="interest">Area of Interest</label>
+        <select id="interest" name="interest" required>
+          <option value="">Select an area</option>
+          <option>Cryogenic Systems &amp; Instrumentation</option>
+          <option>RF &amp; Microwave Engineering</option>
+          <option>Software Engineering</option>
+          <option>AI / ML Engineering (Anomaly &amp; Diagnostics)</option>
+          <option>Quantum Research</option>
+        </select>
+
+        <label for="message">Short Message</label>
+        <textarea id="message" name="message" required placeholder="Tell us what you want to build at Q-ARNE."></textarea>
+
+        <label for="cv">CV / Resume (optional)</label>
+        <input id="cv" name="cv" type="file" accept=".pdf,.doc,.docx" />
+
+        <button class="btn-primary" type="submit">Submit Application</button>
+        <p class="muted">If submitted successfully, this form redirects to the thank-you page.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="muted">Q-ARNE - Operational intelligence for quantum infrastructure.</div>
+  </footer>
+</body>
+</html>

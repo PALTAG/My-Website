@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Careers — Q-ARNE</title>
+  <meta name="description" content="Join Q-ARNE and help build smarter tools for the Quantum Age. View open positions and apply." />
+  <meta property="og:title" content="Careers — Q-ARNE" />
+  <meta property="og:description" content="Join Q-ARNE and help build smarter tools for the Quantum Age. View open positions and apply." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0B0C10; --bg-2:#111317; --card:#1a1c20; --brand:#2F80ED; --text:#fff; --muted:#cfcfcf;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    a{color:inherit}
+    header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(11,12,16,.85);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #17191f}
+    .logo{font-weight:800;font-size:1.25rem;color:var(--brand);letter-spacing:.3px}
+    .logo a{text-decoration:none;color:var(--brand)}
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{font-weight:600;text-decoration:none;color:#fff;opacity:.9}
+    nav a:hover{opacity:1;color:var(--brand)}
+    .btn-primary{display:inline-block;background:var(--brand);padding:10px 16px;border-radius:10px;text-decoration:none;color:#fff;font-weight:700;font-size:1rem;letter-spacing:.3px;transition:.25s box-shadow,.25s transform}
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(47,128,237,.25)}
+
+    .hamb{display:none;cursor:pointer;border:1px solid #222;border-radius:10px;padding:8px}
+    .hamb span{display:block;width:24px;height:2px;background:#fff;margin:5px 0}
+    @media (max-width:880px){
+      nav.links{display:none;position:fixed;inset-inline:0;top:58px;background:#0b0c10;border-top:1px solid #17191f;flex-direction:column;gap:0}
+      nav.links.open{display:flex}
+      nav.links a{padding:14px 20px;border-bottom:1px solid #17191f}
+      .hamb{display:block}
+    }
+
+    section{padding:80px 20px;max-width:var(--max);margin:0 auto}
+    h1{font-family:Poppins,Inter,sans-serif;font-weight:800;letter-spacing:.3px}
+    h2{font-family:Poppins,Inter,sans-serif;font-weight:700;text-align:center;margin:0 0 22px}
+    h3{font-family:Poppins,Inter,sans-serif;font-weight:700}
+
+    .hero-mini{text-align:center;padding:100px 20px 60px;background:var(--bg)}
+    .hero-mini h1{font-size:clamp(2rem,4.5vw,3rem);margin:0 0 14px}
+    .hero-mini p{font-size:1.15rem;color:#e2e8f0;margin:0 0 6px;line-height:1.6;max-width:720px;margin-left:auto;margin-right:auto}
+
+    .card{background:var(--card);border:1px solid #20232a;border-radius:14px;padding:28px 32px}
+    .muted{color:#bfc6d3;font-size:1rem;line-height:1.6}
+
+    .badge{display:inline-block;background:#0f1a2b;border:1px solid #1c2b49;color:#bcd3ff;padding:7px 12px;border-radius:999px;font-weight:700;font-size:.95rem;margin:6px 6px 6px 0}
+
+    .fade-in{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+
+    .accent{background:linear-gradient(180deg,rgba(47,128,237,.06),transparent)}
+
+    footer{background:#0b0c10;border-top:1px solid #17191f;text-align:center;padding:40px 20px;margin-top:60px}
+
+    /* Jobs-specific */
+    .job-header{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:24px}
+    .job-header h3{font-size:1.4rem;margin:0}
+    .job-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+    .job-meta .badge{margin:0}
+
+    .job-section{margin-bottom:32px}
+    .job-section h4{font-family:Poppins,Inter,sans-serif;font-weight:700;font-size:1.1rem;color:var(--brand);margin:0 0 12px;letter-spacing:.2px}
+    .job-section ul{list-style:none;padding:0;margin:0}
+    .job-section ul li{position:relative;padding-left:24px;margin-bottom:10px;color:#bfc6d3;line-height:1.6;font-size:1rem}
+    .job-section ul li::before{content:"→";position:absolute;left:0;color:var(--brand);font-weight:700}
+    .job-section p{color:#bfc6d3;line-height:1.7;font-size:1rem;margin:0 0 10px}
+
+    .skills-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .skill-tag{background:#0f1a2b;border:1px solid #1c2b49;color:#bcd3ff;padding:5px 12px;border-radius:8px;font-size:.9rem;font-weight:600}
+
+    .apply-cta{text-align:center;margin-top:40px;padding-top:32px;border-top:1px solid #20232a}
+    .apply-cta p{color:#bfc6d3;margin:0 0 18px;font-size:1.05rem}
+    .btn-apply{display:inline-block;background:var(--brand);padding:14px 36px;border-radius:10px;text-decoration:none;color:#fff;font-weight:700;font-size:1.1rem;letter-spacing:.3px;transition:.25s box-shadow,.25s transform}
+    .btn-apply:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(47,128,237,.3)}
+
+    .intro-text{text-align:center;color:#cfd3da;max-width:760px;margin:0 auto 48px;font-size:1.1rem;line-height:1.7}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><a href="/">Q-ARNE</a></div>
+    <nav class="links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/#mission">Mission</a>
+      <a href="/#usecases">Who We Help</a>
+      <a href="/#features">What We Offer</a>
+      <a href="/#benefits">Why Q-ARNE</a>
+      <a href="/jobs.html">Open Positions</a>
+      <a href="/careers.html">Careers</a>
+      <a href="/#contact" class="btn-primary">Join Waitlist</a>
+    </nav>
+    <button class="hamb" id="hamb" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </header>
+
+  <div class="hero-mini fade-in">
+    <h1>Join Q-ARNE</h1>
+    <p>Help us build smarter tools for the Quantum Age. We're looking for exceptional people who want to shape the future of quantum computing.</p>
+  </div>
+
+  <section class="fade-in">
+    <h2>Open Positions</h2>
+    <p class="intro-text">We're a founding team building at the intersection of quantum hardware and intelligent software. If you're driven by hard problems and meaningful work, we'd love to hear from you.</p>
+
+    <div class="card">
+      <div class="job-header">
+        <h3>Senior Scientist — Quantum Cryogenic Systems Modelling</h3>
+      </div>
+      <div class="job-meta">
+        <span class="badge">Helsinki / Remote</span>
+        <span class="badge">Equity-based</span>
+        <span class="badge">Founding Role</span>
+      </div>
+
+      <div class="job-section">
+        <h4>The Role</h4>
+        <p>This is a founding scientific position. You will define and build the physics — the models, baselines, and anomaly definitions that make the platform physically meaningful rather than statistically approximate.</p>
+        <p>This role requires prior familiarity with cryogenic microwave measurement chains used in dilution refrigerator environments.</p>
+      </div>
+
+      <div class="job-section">
+        <h4>Responsibilities</h4>
+        <ul>
+          <li>Building physics-based models of microwave signal propagation and thermal behaviour across multi-stage cryogenic RF chains from room temperature to millikelvin stages</li>
+          <li>Constructing expected attenuation and noise temperature profiles for typical dilution refrigerator wiring configurations</li>
+          <li>Modelling thermal–RF interaction effects including attenuator self-heating, imperfect thermalization, and temperature-dependent loss mechanisms</li>
+          <li>Defining physically meaningful baseline expectations for stage temperatures, insertion loss profiles, noise temperatures, and cooldown behaviour</li>
+          <li>Identifying physically plausible deviation signatures arising from impedance mismatch, thermal gradients, component degradation, or suboptimal anchoring</li>
+          <li>Producing model specifications that bridge physical understanding and engineering implementation</li>
+        </ul>
+      </div>
+
+      <div class="job-section">
+        <h4>Required Domain Experience</h4>
+        <p>We are specifically looking for candidates who have previously worked with or modelled microwave signal chains inside dilution refrigerators or comparable cryogenic measurement environments.</p>
+        <p>This role is not suitable for general modelling specialists without prior exposure to cryogenic microwave systems.</p>
+        <p>Relevant experience includes familiarity with:</p>
+        <ul>
+          <li>Typical attenuation distributions across temperature stages</li>
+          <li>Cryogenic coaxial cable materials and behaviour (NbTi, Nb, CuNi)</li>
+          <li>Noise temperature behaviour of cryogenic amplifier chains</li>
+          <li>Thermal anchoring strategies for RF components</li>
+          <li>Circulators and isolators in mK environments</li>
+          <li>VNA measurement interpretation under cryogenic conditions</li>
+          <li>Typical RF chain architectures used in superconducting qubit experiments</li>
+        </ul>
+        <p>Candidates should be comfortable reasoning about expected system behaviour without requiring access to a physical cryostat.</p>
+      </div>
+
+      <div class="job-section">
+        <h4>Core — Cryogenic Microwave Systems Modelling</h4>
+        <div class="skills-grid">
+          <span class="skill-tag">Cryogenic modelling of microwave components</span>
+          <span class="skill-tag">S-parameter modelling across temperature gradients</span>
+          <span class="skill-tag">Noise temperature in cryogenic measurement chains</span>
+          <span class="skill-tag">Microwave signal propagation below 4 K</span>
+          <span class="skill-tag">Multi-stage RF chain attenuation vs temperature</span>
+          <span class="skill-tag">Impedance matching across cryogenic stages</span>
+          <span class="skill-tag">Superconducting transmission lines — NbTi, Nb, Al</span>
+          <span class="skill-tag">HEMT amplifier behaviour at 3–4 K</span>
+          <span class="skill-tag">Thermal–RF interaction and self-heating dynamics</span>
+          <span class="skill-tag">VNA measurement interpretation in cryogenic setups</span>
+          <span class="skill-tag">Realistic deviation sources in experimental systems</span>
+        </div>
+      </div>
+
+      <div class="job-section">
+        <h4>Theoretical &amp; Computational Physics</h4>
+        <div class="skills-grid">
+          <span class="skill-tag">Physics-informed analytical model development</span>
+          <span class="skill-tag">Parameter sensitivity &amp; uncertainty analysis</span>
+          <span class="skill-tag">Low-temperature physical mechanisms affecting RF</span>
+          <span class="skill-tag">Open quantum systems concepts (beneficial)</span>
+          <span class="skill-tag">First-principles model derivation</span>
+        </div>
+      </div>
+
+      <div class="job-section">
+        <h4>Scientific Computing</h4>
+        <div class="skills-grid">
+          <span class="skill-tag">Python — NumPy, SciPy</span>
+          <span class="skill-tag">scikit-rf or equivalent RF tools</span>
+          <span class="skill-tag">COMSOL or multiphysics tools (beneficial)</span>
+          <span class="skill-tag">Working with incomplete datasets</span>
+          <span class="skill-tag">Physical models → computational structures</span>
+        </div>
+      </div>
+
+      <div class="apply-cta">
+        <p>Interested in this role? We'd love to hear from you.</p>
+        <a class="btn-apply" href="/careers.html">Apply Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo"><a href="/" style="text-decoration:none;color:var(--brand)">Q-ARNE</a></div>
+    <p class="muted">Smarter tools for the Quantum Age.<br>&copy; 2025 Q-ARNE. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const els=[...document.querySelectorAll('.fade-in')];
+      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.18});
+      els.forEach(el=>io.observe(el));
+    });
+
+    const hamb=document.getElementById('hamb');
+    const links=document.getElementById('navLinks');
+    hamb.addEventListener('click',()=>links.classList.toggle('open'));
+  </script>
+</body>
+</html>
