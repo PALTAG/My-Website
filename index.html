@@ -3,201 +3,553 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Q-ARNE — Smarter Tools for the Quantum Age</title>
-  <meta name="description" content="Q-ARNE makes quantum computing simpler to explore, connect, and scale — bringing AI intelligence to tomorrow’s discoveries." />
-  <meta property="og:title" content="Q-ARNE — Smarter Tools for the Quantum Age" />
-  <meta property="og:description" content="Accessible AI tools to simplify and accelerate the use of quantum computing for real-world problem solving." />
+  <title>Q-ARNE — System Intelligence for Quantum Cryogenic Infrastructure</title>
+  <meta name="description" content="Q-ARNE is developing an intelligence layer for complex cryogenic systems — helping engineering teams understand system behaviour, diagnose anomalies, and reduce time spent troubleshooting." />
+  <meta property="og:title" content="Q-ARNE — System Intelligence for Quantum Cryogenic Infrastructure" />
+  <meta property="og:description" content="An intelligence layer for cryogenic infrastructure in quantum computing — physics-based understanding, correlation, and diagnostics for engineering teams." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0B0C10; --bg-2:#111317; --card:#1a1c20; --brand:#2F80ED; --text:#fff; --muted:#cfcfcf;
-      --max:1100px;
+      --bg:#0A0C10;
+      --bg-2:#0D1016;
+      --panel:#0F1319;
+      --line:#1B2028;
+      --text:#EDEFF3;
+      --muted:#9AA6B8;
+      --muted-2:#6B7484;
+      --brand:#3E8EF7;
+      --brand-dim:#1E3A63;
+
+      --font:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+
+      --step-eyebrow: 0.8rem;
+      --step-body: clamp(1rem, 0.94rem + 0.25vw, 1.125rem);
+      --step-lead: clamp(1.125rem, 1.05rem + 0.35vw, 1.3rem);
+      --step-h2: clamp(1.6rem, 1.35rem + 1.1vw, 2.35rem);
+      --step-h1: clamp(2.1rem, 1.5rem + 2.6vw, 3.6rem);
+
+      --max:1120px;
+      --max-narrow:760px;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;height:100%}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+    html{-webkit-text-size-adjust:100%}
+    html,body{margin:0;height:100%;overflow-x:hidden}
+    body{
+      font-family:var(--font);
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
     a{color:inherit}
-    header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:rgba(11,12,16,.85);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #17191f}
-    .logo{font-weight:800;font-size:1.25rem;color:var(--brand);letter-spacing:.3px}
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{font-weight:600;text-decoration:none;color:#fff;opacity:.9}
-    nav a:hover{opacity:1;color:var(--brand)}
-    .btn-primary{background:var(--brand);padding:10px 16px;border-radius:10px;text-decoration:none;color:#fff;font-weight:700;font-size:1rem;letter-spacing:.3px;transition:.25s box-shadow,.25s transform}
-    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(47,128,237,.25)}
+    ::selection{background:var(--brand-dim);color:#fff}
 
-    .hamb{display:none;cursor:pointer;border:1px solid #222;border-radius:10px;padding:8px}
-    .hamb span{display:block;width:24px;height:2px;background:#fff;margin:5px 0}
-    @media (max-width:880px){
-      nav.links{display:none;position:fixed;inset-inline:0;top:58px;background:#0b0c10;border-top:1px solid #17191f;flex-direction:column;gap:0}
+    /* ---------- Header / Nav ---------- */
+    header{
+      position:sticky;top:0;z-index:50;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:18px 28px;
+      background:rgba(10,12,16,.82);
+      backdrop-filter:saturate(160%) blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .logo{
+      font-weight:700;font-size:1.05rem;color:var(--text);
+      letter-spacing:.14em;text-decoration:none;
+    }
+    nav.links{display:flex;gap:32px;align-items:center}
+    nav.links a{
+      font-weight:500;font-size:.92rem;text-decoration:none;color:var(--muted);
+      letter-spacing:.01em;transition:color .2s ease;
+    }
+    nav.links a:hover{color:var(--text)}
+    .btn-primary{
+      background:var(--brand);padding:10px 20px;border-radius:6px;
+      text-decoration:none;color:#08111f;font-weight:600;font-size:.92rem;
+      letter-spacing:.01em;transition:filter .2s ease, transform .2s ease;
+      display:inline-block;white-space:nowrap;
+    }
+    .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+    .btn-secondary{
+      background:transparent;padding:10px 20px;border-radius:6px;border:1px solid var(--line);
+      text-decoration:none;color:var(--text);font-weight:600;font-size:.92rem;
+      letter-spacing:.01em;transition:border-color .2s ease, background .2s ease;
+      display:inline-block;white-space:nowrap;
+    }
+    .btn-secondary:hover{border-color:#33394a;background:var(--panel)}
+
+    .hamb{display:none;cursor:pointer;border:1px solid var(--line);border-radius:6px;padding:9px;background:transparent}
+    .hamb span{display:block;width:20px;height:1.5px;background:var(--text);margin:5px 0}
+    @media (max-width:840px){
+      nav.links{
+        display:none;position:fixed;inset-inline:0;top:64px;
+        background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+        flex-direction:column;align-items:stretch;gap:0;padding:6px 0;
+      }
       nav.links.open{display:flex}
-      nav.links a{padding:14px 20px;border-bottom:1px solid #17191f}
+      nav.links a{padding:16px 28px;border-bottom:1px solid var(--line)}
+      nav.links a.btn-primary{margin:14px 28px;text-align:center}
       .hamb{display:block}
     }
 
-    section{padding:80px 20px;max-width:var(--max);margin:0 auto}
-    h1{font-family:Poppins,Inter,sans-serif;font-weight:800;letter-spacing:.3px}
-    h2{font-family:Poppins,Inter,sans-serif;font-weight:700;text-align:center;margin:0 0 22px}
+    /* ---------- Layout helpers ---------- */
+    section{padding:clamp(64px,10vw,120px) 24px}
+    .inner{max-width:var(--max);margin:0 auto}
+    .inner-narrow{max-width:var(--max-narrow);margin:0 auto}
 
-    .hero{position:relative;overflow:hidden;text-align:center;padding:140px 20px;background:#0B0C10}
-    .hero .hero-bg{
-      position:absolute;inset:0;z-index:0;width:100%;height:100%;
-      object-fit:cover;object-position:center;filter:brightness(0.42) saturate(1.05);
-      transform:scale(1.02);
+    .eyebrow{
+      display:block;font-size:var(--step-eyebrow);font-weight:600;color:var(--brand);
+      text-transform:uppercase;letter-spacing:.12em;margin:0 0 16px;
     }
-    .hero::after{
-      content:"";position:absolute;inset:0;z-index:0;
-      background:linear-gradient(180deg, rgba(11,12,16,0.25), rgba(11,12,16,0.65));
+    h1,h2,h3{font-family:var(--font);color:var(--text);letter-spacing:-0.01em}
+    h1{font-size:var(--step-h1);font-weight:700;line-height:1.12;margin:0 0 20px;max-width:16ch}
+    h2{font-size:var(--step-h2);font-weight:700;line-height:1.2;margin:0 0 18px;max-width:20ch}
+    h3{font-size:1.05rem;font-weight:600;margin:0 0 8px;letter-spacing:0}
+
+    p{margin:0 0 1em}
+    .lead{font-size:var(--step-lead);color:var(--muted);line-height:1.6;max-width:62ch}
+    .body{font-size:var(--step-body);color:var(--muted);line-height:1.65;max-width:65ch}
+    .center{text-align:center;margin-left:auto;margin-right:auto}
+
+    .section-head{margin-bottom:48px}
+
+    hr.rule{border:none;border-top:1px solid var(--line);margin:0}
+
+    /* ---------- Hero ---------- */
+    .hero{
+      position:relative;overflow:hidden;
+      padding:clamp(90px,14vw,170px) 24px clamp(70px,10vw,120px);
+      background:radial-gradient(120% 90% at 50% -10%, #10151f 0%, var(--bg) 60%);
+      border-bottom:1px solid var(--line);
     }
-    #particles-js{position:absolute;inset:0;z-index:0}
-    .hero-inner{position:relative;z-index:1;max-width:880px;margin:0 auto}
-    .hero h1{font-size:clamp(2.2rem,5vw,3.2rem);margin:0 0 14px}
-    .hero p{font-size:1.15rem;color:#e2e8f0;margin:0 0 26px;line-height:1.6}
-    .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .hero-canvas-wrap{
+      position:absolute;inset:0;z-index:0;opacity:.85;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.55) 70%, rgba(0,0,0,0) 100%);
+      -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.55) 70%, rgba(0,0,0,0) 100%);
+    }
+    #qarne-field{display:block;width:100%;height:100%}
+    .hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;text-align:left}
+    .hero .logotype{font-size:.95rem;font-weight:700;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin:0 0 28px}
+    .hero h1{max-width:14ch}
+    .hero .lead{margin:0 0 34px;max-width:56ch}
+    .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:34px}
+    .hero-note{font-size:.85rem;color:var(--muted-2);letter-spacing:.02em}
 
-    .grid{display:grid;gap:20px}
-    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
-    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-    @media (max-width:900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+    /* ---------- Problem list ---------- */
+    .problem-grid{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:1px;background:var(--line);border:1px solid var(--line);
+      border-radius:10px;overflow:hidden;
+    }
+    .problem-item{background:var(--panel);padding:26px 28px}
+    .problem-item p{margin:0;color:var(--muted);font-size:.98rem;line-height:1.6}
+    .problem-item .num{display:block;color:var(--muted-2);font-size:.8rem;font-weight:600;letter-spacing:.06em;margin-bottom:10px}
+    @media (max-width:700px){.problem-grid{grid-template-columns:1fr}}
 
-    .card{background:var(--card);border:1px solid #20232a;border-radius:14px;padding:20px}
-    .card h3{margin:4px 0 8px}
-    .muted{color:#bfc6d3;font-size:1rem;line-height:1.6}
-    p.lead{text-align:center;color:#cfd3da;max-width:820px;margin:0 auto;font-size:1.15rem;line-height:1.6}
+    /* ---------- Sequence (Observe/Correlate/Diagnose/Act) ---------- */
+    .sequence{
+      display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;
+    }
+    .seq-step{
+      padding:30px 24px;position:relative;background:var(--panel);
+      border-right:1px solid var(--line);
+    }
+    .seq-step:last-child{border-right:none}
+    .seq-step .tag{font-size:.72rem;font-weight:700;letter-spacing:.14em;color:var(--brand);text-transform:uppercase;display:block;margin-bottom:12px}
+    .seq-step p{color:var(--muted);font-size:.92rem;line-height:1.55;margin:0}
+    .seq-step .node{
+      width:8px;height:8px;border-radius:50%;background:var(--brand);
+      position:absolute;top:28px;right:24px;opacity:.55;
+    }
+    @media (max-width:900px){
+      .sequence{grid-template-columns:1fr}
+      .seq-step{border-right:none;border-bottom:1px solid var(--line)}
+      .seq-step:last-child{border-bottom:none}
+    }
 
-    .fade-in{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+    /* ---------- Building blocks (vertical flow) ---------- */
+    .flow{display:flex;flex-direction:column;align-items:center;gap:0;max-width:420px;margin:0 auto 48px}
+    .flow-node{
+      width:100%;border:1px solid var(--line);background:var(--panel);border-radius:8px;
+      padding:16px 20px;text-align:center;font-weight:600;font-size:.95rem;color:var(--text);
+    }
+    .flow-node.dim{color:var(--muted);font-weight:500}
+    .flow-arrow{width:1px;height:28px;background:linear-gradient(var(--brand-dim), var(--muted-2));margin:0}
+    .flow-note{text-align:center;max-width:560px;margin:0 auto}
+    .flow-note.status-live::before{content:"● ";color:#4ade80;font-size:.7em;vertical-align:middle}
+    .flow-note.status-dev::before{content:"● ";color:var(--muted-2);font-size:.7em;vertical-align:middle}
+
+    /* ---------- Stack diagram ---------- */
+    .stack{display:flex;flex-direction:column;gap:0;max-width:680px;margin:0 auto}
+    .stack-layer{
+      border:1px solid var(--line);border-radius:8px;padding:22px 26px;background:var(--panel);
+    }
+    .stack-layer.mid{
+      border-color:var(--brand-dim);
+      background:linear-gradient(180deg, rgba(62,142,247,.08), rgba(62,142,247,.02));
+    }
+    .stack-layer h3{margin:0 0 6px}
+    .stack-layer p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.55}
+    .stack-arrow{align-self:center;width:1px;height:24px;background:var(--line);margin:6px 0}
+    .stack-caption{margin-top:26px}
+
+    /* ---------- Contact ---------- */
+    .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+    @media (max-width:820px){.contact-wrap{grid-template-columns:1fr;gap:32px}}
+    form{margin:0}
+    label{display:block;font-weight:500;font-size:.88rem;color:var(--muted);margin:0 0 6px}
+    .field{margin-bottom:18px}
+    input,textarea{
+      width:100%;padding:12px 14px;border-radius:6px;border:1px solid var(--line);
+      background:var(--bg-2);color:var(--text);font-family:var(--font);font-size:.95rem;
+      transition:border-color .2s ease;
+    }
+    input:focus,textarea:focus{outline:none;border-color:var(--brand)}
+    textarea{min-height:120px;resize:vertical}
+    .fine-print{font-size:.82rem;color:var(--muted-2);margin-top:14px;line-height:1.5}
+
+    /* ---------- Footer ---------- */
+    footer{border-top:1px solid var(--line);padding:44px 24px;margin-top:0}
+    footer .inner{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+    footer .logo{font-size:.95rem}
+    footer p{color:var(--muted-2);font-size:.85rem;margin:0}
+
+    /* ---------- Utility ---------- */
+    .fade-in{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
     .fade-in.visible{opacity:1;transform:translateY(0)}
 
-    footer{background:#0b0c10;border-top:1px solid #17191f;text-align:center;padding:40px 20px;margin-top:60px}
-
-    form{max-width:560px;margin:28px auto 0}
-    label{font-weight:600;font-size:.95rem}
-    input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #222633;background:#0f1116;color:#fff}
-    textarea{min-height:120px}
-    button[type=submit]{width:100%}
-
-    .badge{display:inline-block;background:#0f1a2b;border:1px solid #1c2b49;color:#bcd3ff;padding:7px 12px;border-radius:999px;font-weight:700;font-size:.95rem;margin:6px}
-
+    @media (prefers-reduced-motion: reduce){
+      .fade-in{opacity:1;transform:none;transition:none}
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo">Q-ARNE</div>
+    <a href="#top" class="logo">Q-ARNE</a>
     <nav class="links" id="navLinks">
-      <a href="#mission">Mission</a>
-      <a href="#usecases">Who We Help</a>
-      <a href="#features">What We Offer</a>
-      <a href="#benefits">Why Q-ARNE</a>
-      <a href="/jobs.html">Open Positions</a>
-      <a href="/careers.html">Careers</a>
-      <a href="#contact" class="btn-primary">Book Demo</a>
+      <a href="#problem">The Problem</a>
+      <a href="#approach">Our Approach</a>
+      <a href="#building">What We're Building</a>
+      <a href="#contact" class="btn-primary">Talk to Us</a>
     </nav>
-    <button class="hamb" id="hamb" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <button class="hamb" id="hamb" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </header>
 
-  <section class="hero fade-in" id="home">
-    <img src="./PicQ1.jpeg" alt="Quantum hero" width="1920" height="1080" class="hero-bg">
-    <div id="particles-js"></div>
+  <section class="hero" id="top">
+    <div class="hero-canvas-wrap" aria-hidden="true">
+      <canvas id="qarne-field"></canvas>
+    </div>
     <div class="hero-inner">
-      <h1>Intelligence for Complex Scientific Infrastructure.</h1>
-      <p>Q-ARNE develops intelligence for advanced technical environments where existing tools fall short.</p>
-      <p class="muted" style="margin:0 auto 26px;max-width:820px">We are building the intelligence layer for scientific and engineering infrastructure that has outgrown the tools designed to manage it. Our work sits at the intersection of precision measurement, systems physics, and applied AI.</p>
+      <span class="logotype">Q-ARNE</span>
+      <h1>System Intelligence for Quantum Cryogenic Infrastructure.</h1>
+      <p class="lead">Q-ARNE is developing an intelligence layer for complex cryogenic systems — helping engineering teams understand system behaviour, diagnose anomalies, and reduce time spent troubleshooting.</p>
+      <p class="body" style="margin-bottom:34px">Currently focused on dilution refrigerator infrastructure for quantum computing.</p>
       <div class="hero-cta">
-        <a class="btn-primary" href="#features">Learn More</a>
-        <a class="btn-primary" href="#contact" style="background:#1f6ae0">Book Demo</a>
-      </div>
-      <div style="margin-top:18px">
-        <span class="badge">AI-powered tools</span>
-        <span class="badge">Future-ready</span>
-        <span class="badge">Open collaboration</span>
+        <a class="btn-primary" href="#contact">Talk to Us</a>
+        <a class="btn-secondary" href="#approach">Explore Q-ARNE</a>
       </div>
     </div>
   </section>
 
-  <section class="fade-in" id="mission">
-    <h2>Our Mission</h2>
-    <p class="lead">Advanced technical systems generate more operational complexity than current tools are designed to handle. Q-ARNE is building the intelligence layer that closes that gap — turning fragmented signals into clear, actionable diagnostics for the engineers who depend on them.</p>
-  </section>
-
-  <section class="fade-in" id="usecases">
-    <h2>Who We Help</h2>
-    <div class="grid grid-3">
-      <div class="card"><h3>Research & Hardware Organizations</h3></div>
-      <div class="card"><h3>Engineering & Operations Teams</h3></div>
-      <div class="card"><h3>Infrastructure Scaling Environments</h3></div>
+  <section class="fade-in" id="problem">
+    <div class="inner">
+      <div class="section-head">
+        <span class="eyebrow">The Problem</span>
+        <h2>Cryogenic Infrastructure Is Becoming Harder to Operate</h2>
+        <p class="body">As quantum systems scale, cryogenic environments contain growing numbers of RF lines, thermal stages, sensors and components. Yet system understanding remains fragmented across measurements, tools and engineering disciplines.</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-item"><span class="num">01</span><p>Fragmented sensor and RF data</p></div>
+        <div class="problem-item"><span class="num">02</span><p>Limited system-level visibility</p></div>
+        <div class="problem-item"><span class="num">03</span><p>Manual troubleshooting</p></div>
+        <div class="problem-item"><span class="num">04</span><p>Difficult root-cause localization</p></div>
+        <div class="problem-item"><span class="num">05</span><p>Increasing complexity as systems scale</p></div>
+        <div class="problem-item"><span class="num">06</span><p>Thermal, RF, pressure, flow and mechanical behaviour are often considered separately</p></div>
+      </div>
     </div>
   </section>
 
-  <section class="fade-in" id="features">
-    <h2>What We Offer</h2>
-    <div class="grid grid-3">
-      <div class="card"><h3>Signal Detection</h3></div>
-      <div class="card"><h3>System Correlation</h3></div>
-      <div class="card"><h3>Diagnostic Clarity</h3></div>
-      <div class="card"><h3>Structured Insights</h3></div>
-      <div class="card"><h3>Platform Flexibility</h3></div>
-      <div class="card"><h3>Operational Scale</h3></div>
+  <hr class="rule">
+
+  <section class="fade-in" id="approach">
+    <div class="inner">
+      <div class="section-head">
+        <span class="eyebrow">Our Approach</span>
+        <h2>An Intelligence Layer for the Cryogenic System</h2>
+        <p class="body">Q-ARNE explores how physics-based understanding and operational data can be brought together to make complex cryogenic systems easier to understand, diagnose and operate.</p>
+      </div>
+      <div class="sequence">
+        <div class="seq-step">
+          <span class="node"></span>
+          <span class="tag">Observe</span>
+          <p>Bring relevant system behaviour and measurements into context.</p>
+        </div>
+        <div class="seq-step">
+          <span class="node"></span>
+          <span class="tag">Correlate</span>
+          <p>Connect behaviour across RF, thermal and operational signals.</p>
+        </div>
+        <div class="seq-step">
+          <span class="node"></span>
+          <span class="tag">Diagnose</span>
+          <p>Identify deviations and narrow down physically plausible sources.</p>
+        </div>
+        <div class="seq-step">
+          <span class="node"></span>
+          <span class="tag">Act</span>
+          <p>Turn complex system behaviour into clearer engineering guidance.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="fade-in" id="benefits">
-    <h2>Why Q-ARNE?</h2>
-    <div class="grid grid-3">
-      <div class="card"><h3>Context-Aware</h3></div>
-      <div class="card"><h3>Reduces Overhead</h3></div>
-      <div class="card"><h3>Infrastructure-Independent</h3></div>
-      <div class="card"><h3>Fast to Insight</h3></div>
-      <div class="card"><h3>Operationally Secure</h3></div>
-      <div class="card"><h3>Built to Evolve</h3></div>
+  <hr class="rule">
+
+  <section class="fade-in" id="building">
+    <div class="inner">
+      <div class="section-head center" style="text-align:center">
+        <span class="eyebrow">What We're Building</span>
+        <h2 class="center">From Physics to Diagnostic Insight</h2>
+        <p class="body center">Our work currently explores physics-based modelling, RF diagnostics and operational telemetry as building blocks for system-level cryogenic intelligence.</p>
+      </div>
+
+      <div class="flow">
+        <div class="flow-node">Physics Models</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node dim">Measurements / Telemetry</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node dim">Correlation</div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node dim">Diagnostics / Engineering Insight</div>
+      </div>
+
+      <p class="body flow-note status-live"><strong style="color:var(--text);font-weight:600">Available today</strong> — cryogenic thermal modelling, used to estimate heat load on dilution refrigerator stages.</p>
+      <p class="body flow-note status-dev">Telemetry integration, RF diagnostics and correlation intelligence are directions we are actively developing and exploring.</p>
     </div>
   </section>
+
+  <hr class="rule">
+
+  <section class="fade-in" id="fits">
+    <div class="inner-narrow">
+      <div class="section-head center" style="text-align:center">
+        <span class="eyebrow">Where Q-ARNE Fits</span>
+        <h2 class="center">Between the Infrastructure and the Qubit</h2>
+      </div>
+
+      <div class="stack">
+        <div class="stack-layer">
+          <h3>Cryogenic Infrastructure</h3>
+          <p>Temperatures, pressures, flows, RF chains and physical components.</p>
+        </div>
+        <div class="stack-arrow"></div>
+        <div class="stack-layer mid">
+          <h3>Q-ARNE — System Intelligence</h3>
+          <p>Physics-based understanding, correlation, diagnostics and system-level insight.</p>
+        </div>
+        <div class="stack-arrow"></div>
+        <div class="stack-layer">
+          <h3>Qubit Layer — Quantum Control &amp; Calibration</h3>
+          <p>Control, measurement and calibration of the quantum processor.</p>
+        </div>
+      </div>
+
+      <p class="body center stack-caption">Cryostat and vendor monitoring tell engineers what is happening in the physical infrastructure. Quantum-control systems focus on operating, measuring and calibrating qubits. Q-ARNE is exploring the intelligence layer between those domains — helping engineers understand why the supporting cryogenic infrastructure is behaving as it is.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
 
   <section class="fade-in" id="contact">
-    <h2>Stay in the Loop</h2>
-    <p class="lead">Interested in Q-ARNE? Book a demo and we’ll follow up shortly.</p>
-    <form name="demo" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
-      <p hidden><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
-      <input type="hidden" name="form-name" value="demo" />
-      <input type="hidden" name="source" value="q-arne.com" />
-      <label for="name">Name</label>
-      <input id="name" name="name" required placeholder="Ada Lovelace" />
-      <label for="email">Email</label>
-      <input id="email" name="email" type="email" required placeholder="ada@example.org" />
-      <label for="message">Message</label>
-      <textarea id="message" name="message" placeholder="What would you like to explore?"></textarea>
-      <button class="btn-primary" type="submit">Submit</button>
-      <p class="muted" style="text-align:center;margin-top:12px">By submitting, you agree to be contacted about Q-ARNE. We won’t share your details.</p>
-    </form>
+    <div class="inner">
+      <div class="contact-wrap">
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h2>Talk to Q-ARNE</h2>
+          <p class="body">We are speaking with researchers, quantum hardware teams and cryogenic engineers working on complex infrastructure. If this problem resonates with you, we'd like to hear from you.</p>
+        </div>
+        <form name="demo" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+          <p hidden><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+          <input type="hidden" name="form-name" value="demo" />
+          <input type="hidden" name="source" value="q-arne.com" />
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" required placeholder="Ada Lovelace" />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="ada@example.org" />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="What would you like to explore?"></textarea>
+          </div>
+          <button class="btn-primary" type="submit" style="width:100%">Contact Q-ARNE</button>
+          <p class="fine-print">By submitting, you agree to be contacted about Q-ARNE. We won't share your details.</p>
+        </form>
+      </div>
+    </div>
   </section>
 
   <footer>
-    <div class="logo" style="margin-bottom:6px">Q-ARNE</div>
-    <p><a href="/careers.html" style="text-decoration:none;font-weight:600">Careers</a></p>
-    <p class="muted">Q-ARNE - Operational intelligence for quantum infrastructure.<br>© 2025 Q-ARNE. All rights reserved.</p>
+    <div class="inner">
+      <div class="logo">Q-ARNE</div>
+      <p>System Intelligence for Quantum Cryogenic Infrastructure.</p>
+      <p>© 2026 Q-ARNE. All rights reserved.</p>
+    </div>
   </footer>
 
   <script>
     document.addEventListener('DOMContentLoaded',()=>{
       const els=[...document.querySelectorAll('.fade-in')];
-      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.18});
+      const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});
       els.forEach(el=>io.observe(el));
     });
 
     const hamb=document.getElementById('hamb');
     const links=document.getElementById('navLinks');
-    hamb.addEventListener('click',()=>links.classList.toggle('open'));
+    hamb.addEventListener('click',()=>{
+      const open=links.classList.toggle('open');
+      hamb.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
 
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click',e=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el){e.preventDefault();window.scrollTo({top:el.offsetTop-60,behavior:'smooth'});links.classList.remove('open')}})});
+      a.addEventListener('click',e=>{
+        const id=a.getAttribute('href').slice(1);
+        const el=document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          window.scrollTo({top:el.offsetTop-60,behavior:'smooth'});
+          links.classList.remove('open');
+        }
+      });
+    });
 
+    /* Procedural scientific motion: layered orbital wireframe with
+       nodes correlating across rings — complexity -> correlation -> clarity.
+       Pure canvas 2D, no imagery, respects prefers-reduced-motion. */
     (function(){
-      const config={particles:{number:{value:60,density:{enable:true,value_area:800}},color:{value:'#2F80ED'},shape:{type:'circle'},opacity:{value:.35,random:true},size:{value:3,random:true},line_linked:{enable:true,distance:150,color:'#2F80ED',opacity:.22,width:1},move:{enable:true,speed:1.1,direction:'none',out_mode:'out'}},
-      interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'grab'},onclick:{enable:true,mode:'push'}},modes:{grab:{distance:140,line_linked:{opacity:.5}},push:{particles_nb:4}}},retina_detect:true};
-      function init(){if(window.particlesJS){try{window.particlesJS('particles-js',config);}catch(e){console.warn('Particles init error',e);}}}
-      if(typeof window.particlesJS==='function'){init();}
-      else{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js';s.async=true;s.onload=init;s.onerror=()=>console.warn('Particles CDN blocked or failed; continuing without background.');document.body.appendChild(s);}
+      const canvas=document.getElementById('qarne-field');
+      if(!canvas) return;
+      const ctx=canvas.getContext('2d');
+      const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let w,h,dpr;
+
+      function resize(){
+        dpr=Math.min(window.devicePixelRatio||1,2);
+        w=canvas.parentElement.clientWidth;
+        h=canvas.parentElement.clientHeight;
+        canvas.width=w*dpr;
+        canvas.height=h*dpr;
+        canvas.style.width=w+'px';
+        canvas.style.height=h+'px';
+        ctx.setTransform(dpr,0,0,dpr,0,0);
+      }
+      window.addEventListener('resize',resize);
+      resize();
+
+      const RINGS=3;
+      const NODES_PER_RING=[9,13,17];
+      const rings=[];
+      for(let r=0;r<RINGS;r++){
+        const nodes=[];
+        const count=NODES_PER_RING[r];
+        for(let i=0;i<count;i++){
+          nodes.push({
+            baseAngle:(i/count)*Math.PI*2,
+            phase:Math.random()*Math.PI*2,
+            active:false,
+            nextToggle:Math.random()*8
+          });
+        }
+        rings.push({
+          nodes,
+          radiusFactor:0.34+r*0.19,
+          speed:0.02+r*0.006,
+          tilt:0.32+r*0.1,
+          rotation:Math.random()*Math.PI*2
+        });
+      }
+
+      let connections=[];
+      function refreshConnections(){
+        connections=[];
+        const activeAll=[];
+        rings.forEach((ring,ri)=>ring.nodes.forEach((n,ni)=>{ if(n.active) activeAll.push({ri,ni}); }));
+        for(let i=0;i<activeAll.length-1;i++){
+          if(Math.random()<0.55){
+            connections.push([activeAll[i],activeAll[i+1]]);
+          }
+        }
+      }
+      setInterval(()=>{ if(!reduceMotion) refreshConnections(); }, 1600);
+
+      function project(ring,angle){
+        const cx=w*0.62, cy=h*0.46;
+        const R=Math.min(w,h)*ring.radiusFactor;
+        const a=angle+ring.rotation;
+        const x=cx+Math.cos(a)*R;
+        const y=cy+Math.sin(a)*R*ring.tilt;
+        return {x,y};
+      }
+
+      let t=0;
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+
+        rings.forEach((ring,ri)=>{
+          ring.rotation+=ring.speed*0.016;
+
+          ctx.beginPath();
+          const steps=72;
+          for(let i=0;i<=steps;i++){
+            const a=(i/steps)*Math.PI*2;
+            const p=project(ring,a);
+            if(i===0) ctx.moveTo(p.x,p.y); else ctx.lineTo(p.x,p.y);
+          }
+          ctx.strokeStyle='rgba(90,110,140,0.16)';
+          ctx.lineWidth=1;
+          ctx.stroke();
+
+          ring.nodes.forEach(n=>{
+            n.nextToggle-=0.016;
+            if(n.nextToggle<=0){
+              n.active=Math.random()<0.4;
+              n.nextToggle=2+Math.random()*6;
+            }
+            const p=project(ring,n.baseAngle);
+            const pulse=0.5+0.5*Math.sin(t*1.4+n.phase);
+            const r=n.active? 2.6+pulse*1.4 : 1.6;
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,r,0,Math.PI*2);
+            ctx.fillStyle=n.active? `rgba(62,142,247,${0.55+pulse*0.35})` : 'rgba(120,135,160,0.35)';
+            ctx.fill();
+          });
+        });
+
+        connections.forEach(([a,b])=>{
+          const na=rings[a.ri].nodes[a.ni], nb=rings[b.ri].nodes[b.ni];
+          const pa=project(rings[a.ri],na.baseAngle);
+          const pb=project(rings[b.ri],nb.baseAngle);
+          ctx.beginPath();
+          ctx.moveTo(pa.x,pa.y);
+          ctx.lineTo(pb.x,pb.y);
+          ctx.strokeStyle='rgba(62,142,247,0.22)';
+          ctx.lineWidth=1;
+          ctx.stroke();
+        });
+
+        t+=0.016;
+        if(!reduceMotion) requestAnimationFrame(draw);
+      }
+
+      refreshConnections();
+      draw();
     })();
   </script>
 </body>
